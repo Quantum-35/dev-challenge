@@ -1,8 +1,8 @@
 import express from 'express';
-import passport from 'passport';
 import dotenv from 'dotenv';
 
 import globalMiddleware from '../middlewares/globalMiddlewares';
+import '../middlewares/passports';
 import routes from './routes';
 import db from './sequelize/models/index';
 
@@ -16,8 +16,6 @@ const port = process.env.PORT || 3002;
 // middlewares
 globalMiddleware(app);
 app.use('/api', routes);
-app.use(passport.initialize());
-app.use(passport.session());
 app.use((req, res) => {
   res.status(404).send({
     success: false,

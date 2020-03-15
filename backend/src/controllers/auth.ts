@@ -26,4 +26,39 @@ export class AuthController {
             });  
         }
     }
+
+    async login(req, res) {
+        const { phone, password } = req.body;
+        try {
+            const user = await AuthController.userOps.findOne(phone);
+            if(user.found) {
+                const validateUser = bcrypt.compareSync(password, user.user.password);
+                if(!validateUser) {
+                    return res.status(422).send({
+                        success: false,
+                        message: 'Invalid phone or password'
+                    });
+                }
+                const expiresIn = '5h';
+                const token = jwt.sign({phone}, process.env.SECRET_KEY, { expiresIn });
+                return res.status(200).send({
+                    success: true,
+                    message: 'Logged in successfully',
+                    token,
+                    expiresIn
+                });
+            } else {
+                return res.status(422).send({
+                    success: false,
+                    message: 'Invalid phone or password'
+                });
+            }
+        } catch (error) {
+            return res.status(400).send({
+                success: false,
+                message: 'Error logging in',
+                error
+            });
+        }
+    }
 }
