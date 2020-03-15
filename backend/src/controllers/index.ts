@@ -1,5 +1,7 @@
 import { AuthController } from './auth';
+import { TasksController } from './tasks';
 
 export {
-    AuthController
+    AuthController,
+    TasksController
 };

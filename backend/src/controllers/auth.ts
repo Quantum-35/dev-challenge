@@ -35,29 +35,36 @@ export class AuthController {
                 const validateUser = bcrypt.compareSync(password, user.user.password);
                 if(!validateUser) {
                     return res.status(422).send({
-                        success: false,
-                        message: 'Invalid phone or password'
+                        error: {
+                            success: false,
+                            message: 'You have entered an incorrect password'
+                        }
                     });
                 }
                 const expiresIn = '5h';
                 const token = jwt.sign({phone}, process.env.SECRET_KEY, { expiresIn });
                 return res.status(200).send({
                     success: true,
+                    reset_password: 0,
                     message: 'Logged in successfully',
-                    token,
-                    expiresIn
+                    accessToken: token,
+                    expires_in: expiresIn
                 });
             } else {
                 return res.status(422).send({
-                    success: false,
-                    message: 'Invalid phone or password'
+                    error: {
+                        success: false,
+                        message: 'You have entered an incorrect password'
+                    }
                 });
             }
         } catch (error) {
             return res.status(400).send({
-                success: false,
-                message: 'Error logging in',
-                error
+                error: {
+                    success: false,
+                    message: 'Error logging in',
+                    error
+                }
             });
         }
     }
