@@ -10,7 +10,7 @@ export const validateRequest = validate => (req, res, next) => {
     const data = req.body;
     if(_.has(validations, validate)) {
         const validateSchema = _.get(validations, validate);
-        const err = Joi.validate(data, validateSchema, { abortEarly: false });
+        const err = validateSchema.validate(data);
 
         if (!err.error) {
             req.body = data;
