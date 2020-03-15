@@ -24,7 +24,25 @@ class UserServices {
         }
     }
 
-    async findOneUser(phone: string, cb) {
+    async findOne(phone: string) {
+        const user = await User.findOne({
+            where: { phone }
+        });
+        if(user) {
+            const {phone, password} = user;
+            return {
+                found: true,
+                user: {phone, password}
+            }
+        } else {
+            return {
+                found: true,
+                user: null
+            }
+        }
+    }
+
+    async findOneUser(phone: string, cb: Function) {
         const user = await User.findOne({
             where: { phone }
         });

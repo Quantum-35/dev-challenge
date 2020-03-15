@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 
-const verifyPassword = (password, enteredPass) => {
-    const isCorrect = bcrypt.compareSync(enteredPass, password);
+const verifyPassword = async (password, enteredPass) => {
+    const isCorrect = await bcrypt.compareSync(password, enteredPass);
     return isCorrect;
 }
 

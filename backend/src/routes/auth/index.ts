@@ -14,6 +14,6 @@ const router = express.Router();
 router.post('/register', validateRequest('signup'), validatePhone, authControllers.register);
 
 router.post('/login', 
-  passport.authenticate('local', { failureRedirect: '/login' }), authControllers.login);
+  passport.authenticate('local'), authControllers.login);
 
 export default router;
