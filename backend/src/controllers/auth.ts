@@ -26,4 +26,8 @@ export class AuthController {
             });  
         }
     }
+
+    async login(req, res) {
+        console.log('@@@, Login')
+    }
 }

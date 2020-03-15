@@ -23,6 +23,21 @@ class UserServices {
             }
         }
     }
+
+    async findOneUser(phone: string, cb) {
+        const user = await User.findOne({
+            where: { phone }
+        });
+        if(user) {
+            const {phone, password} = user;
+            return cb(null, {
+                found: true,
+                user: {phone, password}
+            })
+        } else {
+            return cb(null, null)
+        }
+    }
 }
 
 export default UserServices;

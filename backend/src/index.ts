@@ -3,6 +3,7 @@ import passport from 'passport';
 import dotenv from 'dotenv';
 
 import globalMiddleware from '../middlewares/globalMiddlewares';
+import '../middlewares/passports';
 import routes from './routes';
 import db from './sequelize/models/index';
 
