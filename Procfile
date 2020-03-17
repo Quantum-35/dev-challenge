@@ -1,1 +1,1 @@
-web: sh -c 'cd ./directory/ && exec appname'
+web: npm run start:staging
