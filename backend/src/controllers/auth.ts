@@ -20,7 +20,7 @@ export class AuthController {
             });
         } catch (error) {
             return res.status(201).send({
-                success: true,
+                success: false,
                 message: 'Error creating user',
                 error: error.message
             });  
