@@ -1,0 +1,41 @@
+.phone {
+    height: 25px;
+    font-size: 16px;
+    border-radius: 4px;
+    border-width: 2px;
+}
+
+.password {
+    margin-top: 2em;
+    height: 25px;
+    font-size: 16px;
+    border-radius: 4px;
+    border-width: 2px;
+}
+
+.register {
+    margin: 2em 3em 0;
+    width: 10em;
+    align-self: center;
+    height: 3em;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.login-link {
+    color: #21b1eb;
+    font-style: italic;
+    font-size: 15px;
+    font-family: serif;
+    cursor: pointer;
+}
+
+.reg-errors {
+    position: absolute;
+    margin-top: -2em;
+    align-self: center;
+    color: red;
+    font-size: 15px;
+}
