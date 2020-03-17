@@ -7,7 +7,7 @@ import tasks from './task';
 const router = express.Router();
 
 // Routes
-router.use('/auth', auth);
+router.use('/personnel', auth);
 router.use('/tasks', tasks)
 
 export default router;
