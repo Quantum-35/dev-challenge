@@ -9,11 +9,27 @@ export class TasksController {
         const orderMethodAcc =  orderMethod || 'created';
         if(page || limit) {
             try {
-                const results = await TasksController.tasksOps.findAndCountAll(limit, page, { orderAcc, orderMethodAcc })
+                const results = await TasksController.tasksOps.findAndCountAll(limit, page, { orderAcc, orderMethodAcc });
+                const {count, rows } = results.tasks;
+                const stringifiedRows = [];
+                rows.map(r => {
+                    const values = r.dataValues;
+                    const updateR = {
+                        task_id: values.id,
+                        ...values,
+                    }
+                    delete updateR.id;
+                    stringifiedRows.push(updateR);
+                });
 
                 return res.status(201).send({
                     success: true,
-                    message: results
+                    message: {
+                        totalTasks: count,
+                        page,
+                        perPage: limit,
+                        tasks: stringifiedRows
+                    }
                 });
             } catch (error) {
                 return res.status(400).send({
@@ -26,7 +42,6 @@ export class TasksController {
             try {
                 const allTasks = await TasksController.tasksOps.findAll();
                 return res.send({
-                    success: true,
                     tasks: JSON.parse(JSON.stringify(allTasks)).allTasks
                 })
             } catch (error) {
