@@ -1,1 +1,1 @@
-web: sh -c 'cd ./directory/ && exec appname'
+web: yarn run start:staging
