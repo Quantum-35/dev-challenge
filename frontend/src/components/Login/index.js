@@ -2,12 +2,15 @@ import React from 'react';
 
 import Card from '../Card';
 import './login.css';
+import Loader from 'react-loader-spinner';
 
-const Login = ({ updateState, errors, handleSubmitClicked}) => {
-
+const Login = ({ updateState, logging, errorLogging, handleSubmitClicked}) => {
     return(
         <Card title="LOGIN">
-            {errors && <span className="reg-errors">{errors} </span>}
+            {errorLogging && <span className="reg-errors">{
+                errorLogging && 'Invalid password or phone'
+            }
+            </span>}
             <input
                 className="phone"
                 onChange={e=> updateState('phone', e.target.value)}
@@ -24,7 +27,17 @@ const Login = ({ updateState, errors, handleSubmitClicked}) => {
                 required
             />
 
-            <button className="register" onClick={() => handleSubmitClicked()}>LOGIN</button>
+            <button className="register" onClick={() => handleSubmitClicked()}>
+                {logging ? (
+                    <Loader
+                        type="Circles"
+                        color="#00BFFF"
+                        height={40}
+                        width={40}
+                    />
+                ) : 'LOGIN'
+                }
+            </button>
             <span className="login-link">Not registered</span>
         </Card>
     );

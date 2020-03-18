@@ -23,7 +23,9 @@ const Login = props => {
 
     const handleSubmitClicked = () => {
         const data = {
-            phone, password
+            phone,
+            password,
+            history: props.history
         }
         props.login(data);
     }
@@ -31,15 +33,20 @@ const Login = props => {
     return(
         <LoginComponent
             updateState={updateState}
-            errors={props.error}
             handleSubmitClicked={handleSubmitClicked}
+            logging={props.logging}
+            errorLogging={props.errorLogging}
         />
     );
 }
 
 export default
 connect(
-    state => ({}),
+    state => ({
+        logging: state.login.loading,
+        errorLogging: state.login.errors,
+        loggedIn: state.login.data
+    }),
     dispatch => ({
         login: data => dispatch(login(data))
     })
