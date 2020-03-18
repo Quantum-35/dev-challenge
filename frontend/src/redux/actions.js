@@ -7,7 +7,11 @@ import {
     REGISTER_REQUEST,
     LOGIN_FAILED,
     LOGIN_REQUEST,
-    LOGIN_SUCCESS } from './types';
+    LOGIN_SUCCESS,
+    GET_TASK_REQUEST,
+    GET_TASK_FAILED,
+    GET_TASK_SUCCESS
+} from './types';
 
 const { REACT_APP_BASE_URL } = process.env;
 
@@ -37,5 +41,17 @@ export const login = data => async dispatch => {
         return;
     } catch (error) {
         dispatch({ type:  LOGIN_FAILED, errors: error.response})
+    }
+}
+
+export const getTasksAssigned = data => async dispatch => {
+    dispatch({ type: GET_TASK_REQUEST });
+    try {
+        const token = localStorage.getItem('access_token');
+        axios.defaults.headers.common={Authorization: 'Bearer ' + token}
+        const res = await axios.get(`${REACT_APP_BASE_URL}/tasks/assigned`);
+        return dispatch({ type: GET_TASK_SUCCESS, payload: res })
+    } catch (error) {
+        dispatch({ type:  GET_TASK_FAILED, errors: error.response})
     }
 }

@@ -4,7 +4,7 @@ import Card from '../Card';
 import './login.css';
 import Loader from 'react-loader-spinner';
 
-const Login = ({ updateState, logging, errorLogging, handleSubmitClicked}) => {
+const Login = ({ updateState, logging,history ,errorLogging, handleSubmitClicked}) => {
     return(
         <Card title="LOGIN">
             {errorLogging && <span className="reg-errors">{
@@ -38,7 +38,7 @@ const Login = ({ updateState, logging, errorLogging, handleSubmitClicked}) => {
                 ) : 'LOGIN'
                 }
             </button>
-            <span className="login-link">Not registered</span>
+            <span className="login-link" onClick={() => history.push('/')}>Not registered</span>
         </Card>
     );
 }

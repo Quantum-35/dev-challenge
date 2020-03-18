@@ -36,6 +36,7 @@ const Login = props => {
             handleSubmitClicked={handleSubmitClicked}
             logging={props.logging}
             errorLogging={props.errorLogging}
+            history={props.history}
         />
     );
 }

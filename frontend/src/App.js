@@ -11,6 +11,7 @@ import rootReducer from './redux/rootReducers';
 import ROUTES from './routes';
 import Page404 from './components/404';
 import PrivateRoute from './privateRoutes';
+import Dashboard from './containers/Dashboard';
 
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
@@ -25,7 +26,7 @@ function App() {
             <Route exact path={ROUTES.login} component={Login} />
             <Route exact path={ROUTES.home} component={Register} />
 
-            {/* <PrivateRoute exact path={ROUTES.dashboard} component={Dashboard} /> */}
+            <PrivateRoute exact path={ROUTES.dashboard} component={Dashboard} />
             <Route component={Page404} />
           </Switch>
         </div>
