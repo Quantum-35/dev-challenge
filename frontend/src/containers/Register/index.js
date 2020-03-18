@@ -37,7 +37,7 @@ const Register = props => {
         return false;
     }
 
-    const handleSubmitClicked = () => {
+    const handleSubmitClicked = async () => {
         if(!validatePhone() || !phone) {
             return setError('Enter a valid phone number i.e 0721...');
         }
@@ -49,9 +49,11 @@ const Register = props => {
             return setError('Password should be at least 5 characters');
         }
         const data = {
-            phone, password
+            phone,
+            password,
+            history: props.history
         }
-        props.signup(data);
+        await props.signup(data);
     }
 
     return(
@@ -59,13 +61,19 @@ const Register = props => {
             updateState={updateState}
             errors={error}
             handleSubmitClicked={handleSubmitClicked}
+            isSigningUp={props.isSigningUp}
+            signUpErrors={props.signUpErrors}
         />
     );
 }
 
 export default
 connect(
-    state => ({}),
+    state => ({
+        isSigningUp: state.signup.loading,
+        signUpErrors: state.signup.errors,
+        signedUp: state.signup.data
+    }),
     dispatch => ({
         signup: data => dispatch(signup(data))
     })

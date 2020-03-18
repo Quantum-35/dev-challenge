@@ -9,7 +9,10 @@ import Register from './containers/Register';
 import Login from './containers/Login';
 import rootReducer from './redux/rootReducers';
 import ROUTES from './routes';
+import Page404 from './components/404';
 import PrivateRoute from './privateRoutes';
+
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 
@@ -20,9 +23,10 @@ function App() {
         <div style={{ backgroundColor: '#ececec', height: '100vh', padding: '30px'}}>
           <Switch>
             <Route exact path={ROUTES.login} component={Login} />
-            <Route path={ROUTES.home} component={Register} />
+            <Route exact path={ROUTES.home} component={Register} />
 
             {/* <PrivateRoute exact path={ROUTES.dashboard} component={Dashboard} /> */}
+            <Route component={Page404} />
           </Switch>
         </div>
       </Router>
