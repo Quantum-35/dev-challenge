@@ -1,0 +1,25 @@
+.card {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-item {
+    width: 26em;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 1em;
+}
+
+.card-title {
+    font-size: 21px;
+    font-weight: 500;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 8em;
+    padding-top: 2em;
+}
