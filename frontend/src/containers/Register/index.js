@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 
 import RegisterComponent from '../../components/Register';
+import { signup } from '../../redux/actions';
 
-const Register = () => {
+const Register = props => {
     const [phone, setPhone] = useState(null);
     const [password, setPassword] = useState(null);
     const [confirmPassword, setConfirmPassword] = useState(null);
@@ -29,16 +31,43 @@ const Register = () => {
                 return;
         }
     }
+    const validatePhone = () => {
+        const isMatching = phone && phone.match(/^0[7][0-9]{8}$/);
+        if(isMatching) return true
+        return false;
+    }
+
+    const handleSubmitClicked = () => {
+        if(!validatePhone() || !phone) {
+            return setError('Enter a valid phone number i.e 0721...');
+        }
+        if(!password) return setError('Invalid password input');
+        if(password !== confirmPassword) {
+            return setError('Password don\'t match');
+        }
+        if(password.length < 5) {
+            return setError('Password should be at least 5 characters');
+        }
+        const data = {
+            phone, password
+        }
+        props.signup(data);
+    }
 
     return(
         <RegisterComponent
-            phone={phone}
-            password={password}
-            confirmPassword={confirmPassword}
             updateState={updateState}
             errors={error}
+            handleSubmitClicked={handleSubmitClicked}
         />
     );
 }
 
-export default Register;
+export default
+connect(
+    state => ({}),
+    dispatch => ({
+        signup: data => dispatch(signup(data))
+    })
+)
+(Register);

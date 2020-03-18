@@ -3,7 +3,7 @@ import React from 'react';
 import Card from '../Card';
 import './register.css';
 
-const Register = ({ updateState, errors}) => {
+const Register = ({ updateState, errors, handleSubmitClicked}) => {
 
     return(
         <Card title="REGISTER">
@@ -31,7 +31,7 @@ const Register = ({ updateState, errors}) => {
                 required
             />
 
-            <button className="register">REGISTER</button>
+            <button className="register" onClick={() => handleSubmitClicked()}>REGISTER</button>
             <span className="login-link">Already registered</span>
         </Card>
     );

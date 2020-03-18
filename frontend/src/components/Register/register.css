@@ -30,6 +30,7 @@
     font-size: 15px;
     font-family: serif;
     cursor: pointer;
+    text-decoration: underline;
 }
 
 .reg-errors {
