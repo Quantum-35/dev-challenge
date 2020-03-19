@@ -6,10 +6,24 @@ import { getTasksAssigned } from '../../redux/actions';
 
 const Dashboard = props => {
     useEffect(() => {
-        props.getTasksAssignedP()
+        const data = {
+            page: 1,
+            limit: 10,
+            order: "created",
+            orderMethod: "DESC"
+        };
+        props.getTasksAssignedP(data)
     }, []);
+
+    const nextList = data => {
+        props.getTasksAssignedP(data);
+    }
+
     return (
-        <DashboardComponent tasks={props.tasks} />
+        <DashboardComponent
+            tasks={props.tasks}
+            NextList={nextList}
+        />
     );
 }
 

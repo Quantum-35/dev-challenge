@@ -37,7 +37,7 @@ export const login = data => async dispatch => {
         if(!res.data.success) return dispatch({ type: LOGIN_FAILED, errors: res })
         dispatch({ type: LOGIN_SUCCESS, payload: res })
         localStorage.setItem('access_token', res.data.accessToken)
-        history.push(`${ROUTES.dashboard}`);
+        history.push(`${ROUTES.dashboard}?page=1&limit=10&order=created&orderMethod=DESC`);
         return;
     } catch (error) {
         dispatch({ type:  LOGIN_FAILED, errors: error.response})
@@ -49,7 +49,7 @@ export const getTasksAssigned = data => async dispatch => {
     try {
         const token = localStorage.getItem('access_token');
         axios.defaults.headers.common={Authorization: 'Bearer ' + token}
-        const res = await axios.get(`${REACT_APP_BASE_URL}/tasks/assigned`);
+        const res = await axios.get(`${REACT_APP_BASE_URL}/tasks/assigned?page=${data.page}&limit=${data.limit}&order=${data.order}&orderMethod=${data.orderMethod}`);
         return dispatch({ type: GET_TASK_SUCCESS, payload: res })
     } catch (error) {
         dispatch({ type:  GET_TASK_FAILED, errors: error.response})
