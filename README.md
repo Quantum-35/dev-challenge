@@ -1,6 +1,6 @@
 Hosted backend URL: https://quatrixglobal-challenge.herokuapp.com/
 
-Hosted Frontedn URL: https://jolly-nightingale-98eb7c.netlify.com/
+Hosted Frontedn URL: quatrixglobal-test.netlify.com
 
 Frontend Folder - frontend.
     Language: React Redux frontend
