@@ -4,7 +4,7 @@ import Card from '../Card';
 import './register.css';
 import Loader from 'react-loader-spinner';
 
-const Register = ({ updateState, errors, handleSubmitClicked, isSigningUp, signUpErrors}) => {
+const Register = ({ updateState, errors, history, handleSubmitClicked, isSigningUp, signUpErrors}) => {
 
     return(
         <Card title="REGISTER">
@@ -47,7 +47,7 @@ const Register = ({ updateState, errors, handleSubmitClicked, isSigningUp, signU
                     />
                 ) : 'REGISTER'}
             </button>
-            <span className="login-link">Already registered</span>
+            <span className="login-link" onClick={() => history.push('/login')}>Already registered</span>
         </Card>
     );
 }

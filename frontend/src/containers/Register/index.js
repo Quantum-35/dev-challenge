@@ -63,6 +63,7 @@ const Register = props => {
             handleSubmitClicked={handleSubmitClicked}
             isSigningUp={props.isSigningUp}
             signUpErrors={props.signUpErrors}
+            history={props.history}
         />
     );
 }
